@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <div class="row mt-3">
+    <div class="col-lg-4">
+      <div class="col-lg-12">
+        <h4>Select File</h4>
+      </div>
+      <div class="col-lg-12">
+        <!-- <input formControlName="file" id="file" type="file" class="form-control" multiple
+            (change)="onFileChange($event)"> -->
+
+        <!-- <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+          (onFileLeave)="fileLeave($event)">
+          <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+            Optional custom content that replaces the the entire default content.
+            <button type="button" (click)="openFileSelector()">Browse Files</button>
+          </ng-template>
+        </ngx-file-drop> -->
+
+        <ngx-dropzone (change)="onSelect($event)">
+          <ngx-dropzone-label>Drop Files Here</ngx-dropzone-label>
+        </ngx-dropzone>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="col-lg-12">
+        <h4>Preview</h4>
+      </div>
+      <div class="col-lg-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>S.no</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf='files'>
+            <tr *ngFor='let file of files;let i = index'>
+              <td>{{i+1}}</td>
+              <td class="col-lg-1" scope="row">{{file.name}}</td>
+              <td class="col-lg-4">
+                <button class="btn btn-danger" (click)='deleteFile(i)'>Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-lg-12" *ngIf='files'>
+          <button type="submit" (click)='submit()' class='btn btn-sucess'>Upload All</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row mt-3">
+    <div class="col-lg-12">
+      <div class="progress">
+        <div class="progress-bar" #postLoader role="progressbar" style="width: 0%;" aria-valuemin="0"
+          aria-valuemax="100">
+          {{loadingPercentage}}</div>
+      </div>
+    </div>
+  </div>
+</div>
